@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.*;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,6 +29,9 @@ public abstract class NewsFragment extends Fragment implements Host<News> {
     
     @BindView (R.id.news_list)
     NewsRecyclerView newsList;
+    
+    @BindView (R.id.loading)
+    AVLoadingIndicatorView loading;
     
     private List<News> data;
     
@@ -67,8 +72,8 @@ public abstract class NewsFragment extends Fragment implements Host<News> {
     
     protected void setData (List<News> data) {
         newsList.setData (data);
-        for (int i = 0; i < data.size (); i++)
-            newsList.getAdapter ().notifyItemInserted (i);
+        loading.setVisibility (View.GONE);
+        newsList.setVisibility (View.VISIBLE);
     }
     
     @Override
@@ -84,6 +89,10 @@ public abstract class NewsFragment extends Fragment implements Host<News> {
         intent.putExtra ("content", item.content);
         intent.putExtra ("id", item.id);
         startActivityForResult (intent, OPEN_NEWS_REQUEST);
+    }
+    
+    public void onTabReselected () {
+        newsList.smoothScrollToPosition (0);
     }
     
     @Override

@@ -37,7 +37,6 @@ public abstract class QRCallback<T> implements Callback<T> {
         Log.e ("QRCallback", t.getLocalizedMessage ());
         Log.e ("QRCallback", t.toString ());
         onFailure ();
-        onExit ();
     }
     
     protected abstract void onSuccessful (@NonNull T body);

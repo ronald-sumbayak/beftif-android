@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ra.sumbayak.beftif.main.NewsRecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/news_list"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"/>
+    >
+    
+    <ra.sumbayak.beftif.main.NewsRecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/news_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:visibility="invisible"/>
+    
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/loading"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/gray"
+        app:indicatorName="BallPulseIndicator"
+        />
+    
+</RelativeLayout>

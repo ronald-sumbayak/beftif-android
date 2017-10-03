@@ -27,7 +27,8 @@ public abstract class ListRecyclerView<T> extends RecyclerView {
     
     public ListRecyclerView setData (List<T> data) {
         this.data = data;
-        getAdapter ().notifyDataSetChanged ();
+        for (int i = 0; i < data.size (); i++)
+            getAdapter ().notifyItemInserted (i);
         return this;
     }
     

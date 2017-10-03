@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -49,7 +51,7 @@ public class ApiInterface {
     }
     
     public interface Interface {
-        @GET ("/") Call<Object> test ();
+        @GET (" ") Call<JsonObject> test ();
         @GET ("news") Call<List<News>> newsByCategory (@Query ("category__name") String category);
         @GET ("news") Call<List<News>> newsByOrdering (@Query ("ordering") String ordering);
         @GET ("news/{id}") Call<News> retrieveNews (@Path ("id") int id);

@@ -21,30 +21,21 @@ public class SingleSourceTabLayout<T> extends TabLayout implements OnPageChangeL
     private AppCompatActivity context;
     private List<String> categories = new ArrayList<> ();
     private List<NewsFragment> fragmentList = new ArrayList<> ();
-    private List<T> data;
     private boolean is_activated;
     
     public SingleSourceTabLayout (Context context) {
         super (context);
         this.context = (AppCompatActivity) context;
-        initialize ();
     }
     
     public SingleSourceTabLayout (Context context, AttributeSet attrs) {
         super (context, attrs);
         this.context = (AppCompatActivity) context;
-        initialize ();
     }
     
     public SingleSourceTabLayout (Context context, AttributeSet attrs, int defStyleAttr) {
         super (context, attrs, defStyleAttr);
         this.context = (AppCompatActivity) context;
-        initialize ();
-    }
-    
-    public SingleSourceTabLayout setData (List<T> data) {
-        this.data = data;
-        return this;
     }
     
     private void initialize () {
@@ -62,6 +53,8 @@ public class SingleSourceTabLayout<T> extends TabLayout implements OnPageChangeL
     }
     
     public SingleSourceTabLayout addTab (String title) {
+        if (getTabCount () == 0)
+            initialize ();
         createTab (title, title, new CategoryFragment ());
         return this;
     }
@@ -105,7 +98,7 @@ public class SingleSourceTabLayout<T> extends TabLayout implements OnPageChangeL
     
     @Override
     public void onTabReselected (Tab tab) {
-        
+        fragmentList.get (tab.getPosition ()).onTabReselected ();
     }
     
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
